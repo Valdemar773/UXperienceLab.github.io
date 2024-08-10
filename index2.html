@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог//Название твоей конторы</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: black;
+        }
+        h1 {
+            font-family: 'Times New Roman', Times, serif;
+            color: #8B0000;
+            font-size: 40pt; 
+            font-weight: normal;
+            text-align: center;
+        }
+        p {
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            color: #8B0000;
+            font-size: 24pt;  
+            font-weight: normal;
+        }
+        .image-container {
+            position: relative;
+            display: inline-block;
+            margin: 20px;
+        }
+        .rating {
+            text-align: center;
+            margin-top: 10px;
+            color: #8B0000;
+            font-size: 20pt;
+        }
+        .star {
+            cursor: pointer;
+            font-size: 30pt;
+            color: gray;
+        }
+        .star.hover, .star.selected {
+            color: gold;
+        }
+    </style> 
+    <script>
+        function rate(imageId, score) {
+            const ratingElement = document.getElementById(imageId + '-rating');
+            ratingElement.innerText = score;
+            // Выделение выбранных звезд
+            const stars = document.querySelectorAll(`#${imageId} .star`);
+            stars.forEach((star, index) => {
+                if (index < score) {
+                    star.classList.add('selected');
+                } else {
+                    star.classList.remove('selected');
+                }
+            });
+        }
+        
+        function handleMouseOver(imageId, starIndex) {
+            const stars = document.querySelectorAll(`#${imageId} .star`);
+            stars.forEach((star, index) => {
+                if (index <= starIndex) {
+                    star.classList.add('hover');
+                } else {
+                    star.classList.remove('hover');
+                }
+            });
+        }
+
+        function handleMouseOut(imageId) {
+            const stars = document.querySelectorAll(`#${imageId} .star`);
+            stars.forEach((star) => {
+                star.classList.remove('hover');
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Вы находитесь в разделе "каталог"</h1>
+    <p>Здесь собранны некоторые работы автора</p>
+
+    <div class="image-container" id="ushi2">
+        <img src="ushi2.jpg" alt="Наушники" height="350" width="500">
+        <div class="rating" id="ushi2-rating">0</div>
+        <div>
+            <span class="star" onclick="rate('ushi2', 1)" onmouseover="handleMouseOver('ushi2', 0)" onmouseout="handleMouseOut('ushi2')">★</span>
+            <span class="star" onclick="rate('ushi2', 2)" onmouseover="handleMouseOver('ushi2', 1)" onmouseout="handleMouseOut('ushi2')">★</span>
+            <span class="star" onclick="rate('ushi2', 3)" onmouseover="handleMouseOver('ushi2', 2)" onmouseout="handleMouseOut('ushi2')">★</span>
+            <span class="star" onclick="rate('ushi2', 4)" onmouseover="handleMouseOver('ushi2', 3)" onmouseout="handleMouseOut('ushi2')">★</span>
+            <span class="star" onclick="rate('ushi2', 5)" onmouseover="handleMouseOver('ushi2', 4)" onmouseout="handleMouseOut('ushi2')">★</span>
+        </div>
+    </div>
+
+    <div class="image-container" id="dlyanego">
+        <img src="dlyanego.jpg" alt="вещи для мужчин" height="350" width="500">
+        <div class="rating" id="dlyanego-rating">0</div>
+        <div>
+            <span class="star" onclick="rate('dlyanego', 1)" onmouseover="handleMouseOver('dlyanego', 0)" onmouseout="handleMouseOut('dlyanego')">★</span>
+
+            <span class="star" onclick="rate('dlyanego', 2)" onmouseover="handleMouseOver('dlyanego', 1)" onmouseout="handleMouseOut('dlyanego')">★</span>
+            <span class="star" onclick="rate('dlyanego', 3)" onmouseover="handleMouseOver('dlyanego', 2)" onmouseout="handleMouseOut('dlyanego')">★</span>
+            <span class="star" onclick="rate('dlyanego', 4)" onmouseover="handleMouseOver('dlyanego', 3)" onmouseout="handleMouseOut('dlyanego')">★</span>
+            <span class="star" onclick="rate('dlyanego', 5)" onmouseover="handleMouseOver('dlyanego', 4)" onmouseout="handleMouseOut('dlyanego')">★</span>
+        </div>
+    </div>
+
+    <div class="image-container" id="dlyanee">
+        <img src="dlyanee.jpg" alt="вещи для женщин" height="350" width="500">
+        <div class="rating" id="dlyanee-rating">0</div>
+        <div>
+            <span class="star" onclick="rate('dlyanee', 1)" onmouseover="handleMouseOver('dlyanee', 0)" onmouseout="handleMouseOut('dlyanee')">★</span>
+            <span class="star" onclick="rate('dlyanee', 2)" onmouseover="handleMouseOver('dlyanee', 1)" onmouseout="handleMouseOut('dlyanee')">★</span>
+            <span class="star" onclick="rate('dlyanee', 3)" onmouseover="handleMouseOver('dlyanee', 2)" onmouseout="handleMouseOut('dlyanee')">★</span>
+            <span class="star" onclick="rate('dlyanee', 4)" onmouseover="handleMouseOver('dlyanee', 3)" onmouseout="handleMouseOut('dlyanee')">★</span>
+            <span class="star" onclick="rate('dlyanee', 5)" onmouseover="handleMouseOver('dlyanee', 4)" onmouseout="handleMouseOut('dlyanee')">★</span>
+        </div>
+    </div>
+
+    <div class="image-container" id="dlyadetei">
+        <img src="dlyadetei.jpg" alt="Вещи для детей" height="350" width="500">
+        <div class="rating" id="dlyadetei-rating">0</div>
+        <div>
+            <span class="star" onclick="rate('dlyadetei', 1)" onmouseover="handleMouseOver('dlyadetei', 0)" onmouseout="handleMouseOut('dlyadetei')">★</span>
+            <span class="star" onclick="rate('dlyadetei', 2)" onmouseover="handleMouseOver('dlyadetei', 1)" onmouseout="handleMouseOut('dlyadetei')">★</span>
+            <span class="star" onclick="rate('dlyadetei', 3)" onmouseover="handleMouseOver('dlyadetei', 2)" onmouseout="handleMouseOut('dlyadetei')">★</span>
+            <span class="star" onclick="rate('dlyadetei', 4)" onmouseover="handleMouseOver('dlyadetei', 3)" onmouseout="handleMouseOut('dlyadetei')">★</span>
+            <span class="star" onclick="rate('dlyadetei', 5)" onmouseover="handleMouseOver('dlyadetei', 4)" onmouseout="handleMouseOut('dlyadetei')">★</span>
+        </div>
+    </div><br>
+    <a href="DashaPavlova.html">На главную</a>
+    <a href="DashaPavlovaKontakti.html">Связаться с нами</a>
+</body>
+</html>
