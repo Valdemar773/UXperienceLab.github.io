@@ -1,82 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Каталог//Название твоей конторы</title>
-    <style>
-        body {
-            font-family: 'Times New Roman', Times, serif;
-            background-color: black;
-        }
-        h1 {
-            font-family: 'Times New Roman', Times, serif;
-            color: #8B0000;
-            font-size: 40pt; 
-            font-weight: normal;
-            text-align: center;
-        }
-        p {
-            text-align: center;
-            font-family: 'Times New Roman', Times, serif;
-            color: #8B0000;
-            font-size: 24pt;  
-            font-weight: normal;
-        }
-        .image-container {
-            position: relative;
-            display: inline-block;
-            margin: 20px;
-        }
-        .rating {
-            text-align: center;
-            margin-top: 10px;
-            color: #8B0000;
-            font-size: 20pt;
-        }
-        .star {
-            cursor: pointer;
-            font-size: 30pt;
-            color: gray;
-        }
-        .star.hover, .star.selected {
-            color: gold;
-        }
-    </style> 
-    <script>
-        function rate(imageId, score) {
-            const ratingElement = document.getElementById(imageId + '-rating');
-            ratingElement.innerText = score;
-            // Выделение выбранных звезд
-            const stars = document.querySelectorAll(`#${imageId} .star`);
-            stars.forEach((star, index) => {
-                if (index < score) {
-                    star.classList.add('selected');
-                } else {
-                    star.classList.remove('selected');
-                }
-            });
-        }
-        
-        function handleMouseOver(imageId, starIndex) {
-            const stars = document.querySelectorAll(`#${imageId} .star`);
-            stars.forEach((star, index) => {
-                if (index <= starIndex) {
-                    star.classList.add('hover');
-                } else {
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Каталог//Название вашей конторы</title>
+        <style>
+            body {
+                font-family: 'Times New Roman', Times, serif;
+                background-color: black;
+            }
+            h1 {
+                color: #8B0000;
+                font-size: 40pt; 
+                font-weight: normal;
+                text-align: center;
+            }
+            p {
+                text-align: center;
+                color: #8B0000;
+                font-size: 24pt;  
+                font-weight: normal;
+            }
+            .image-container {
+                position: relative;
+                display: inline-block;
+                margin: 20px;
+            }
+            .rating {
+                text-align: center;
+                margin-top: 10px;
+                color: #8B0000;
+                font-size: 20pt;
+            }
+            .star {
+                cursor: pointer;
+                font-size: 30pt;
+                color: gray;
+            }
+            .star.hover, .star.selected {
+                color: gold;
+            }
+        </style> 
+        <script>
+            const ratings = {
+                ushi2: { sum: 0, count: 0 },
+                dlyanego: { sum: 0, count: 0 }
+            };
+    
+            function rate(imageId, score) {
+                const ratingElement = document.getElementById(imageId + '-rating');
+                const currentRating = parseInt(ratingElement.innerText, 10);
+                
+                
+                ratings[imageId].sum += score;
+                ratings[imageId].count++;
+    
+                
+                const average = (ratings[imageId].sum / ratings[imageId].count).toFixed(2);
+                ratingElement.innerText = average;
+    
+                
+                const stars = document.querySelectorAll(`#${imageId} .star`);
+                stars.forEach((star, index) => {
+                    if (index < score) {
+                        star.classList.add('selected');
+                    } else {
+                        star.classList.remove('selected');
+                    }
+                });
+            }
+    
+            function handleMouseOver(imageId, starIndex) {
+                const stars = document.querySelectorAll(`#${imageId} .star`);
+                stars.forEach((star, index) => {
+                    if (index <= starIndex) {
+                        star.classList.add('hover');
+                    } else {
+                        star.classList.remove('hover');
+                    }
+                });
+            }
+    
+            function handleMouseOut(imageId) {
+                const stars = document.querySelectorAll(`#${imageId} .star`);
+                stars.forEach((star) => {
                     star.classList.remove('hover');
-                }
-            });
-        }
-
-        function handleMouseOut(imageId) {
-            const stars = document.querySelectorAll(`#${imageId} .star`);
-            stars.forEach((star) => {
-                star.classList.remove('hover');
-            });
-        }
-    </script>
-</head>
+                });
+            }
+        </script>
+    </head>
 <body>
     <h1>Вы находитесь в разделе "каталог"</h1>
     <p>Здесь собранны некоторые работы автора</p>
